@@ -1,0 +1,19 @@
+{
+  "name": "fetch",
+  "version": "1.0.0",
+  "description": "Opinionated fetch augmented to work specifically with AWS Amplify.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MindPointGroup/fetch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MindPointGroup/fetch/issues"
+  },
+  "homepage": "https://github.com/MindPointGroup/fetch#readme"
+}
