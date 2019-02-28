@@ -100,8 +100,7 @@ class Fetch {
     }
 
     if (!res.ok || res.statusCode >= 300 || res.statusCode < 200) {
-      const msg = res.statusText || res.message || data.message
-      const err = new Error(msg)
+      const err = new Error(res.statusText || res.message)
       return { err, res, data }
     }
 
