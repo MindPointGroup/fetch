@@ -43,7 +43,13 @@ class Fetch {
       opts.body = JSON.stringify(opts.body)
     }
 
-    const session = await this.auth.currentSession()
+    let session = {}
+
+    try {
+      session = await this.auth.currentSession()
+    } catch (err) {
+      session = { idToken: null }
+    }
 
     const request = {
       response: true,
