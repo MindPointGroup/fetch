@@ -85,6 +85,10 @@ class Fetch {
 
     res.statusCode = res.status
 
+    if (opts.method === 'DELETE') {
+      return { res }
+    }
+
     let data
 
     try {
