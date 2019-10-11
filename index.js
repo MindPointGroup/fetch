@@ -87,7 +87,7 @@ class Fetch {
 
     let data
 
-    if (opts.method === 'DELETE') {
+    if (opts.method !== 'DELETE') {
       try {
         data = await res.json()
         //
@@ -103,7 +103,7 @@ class Fetch {
         }
         debug('RESPONSE DATA', data)
       } catch (err) {
-        return { err, res: {} }
+        return { err, res }
       }
     }
 
