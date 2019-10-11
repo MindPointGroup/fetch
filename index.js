@@ -85,31 +85,29 @@ class Fetch {
 
     res.statusCode = res.status
 
-    if (opts.method === 'DELETE') {
-      return { res }
-    }
-
     let data
 
-    try {
-      data = await res.json()
-      //
-      // in the case where we have aws integration boilerplate
-      // we can omit it since we also have it on the response.
-      //
-      if (data.body && data.statusCode) {
-        try {
-          data = JSON.parse(data.body)
-        } catch (err) {
-          data = data.body
+    if (opts.method === 'DELETE') {
+      try {
+        data = await res.json()
+        //
+        // in the case where we have aws integration boilerplate
+        // we can omit it since we also have it on the response.
+        //
+        if (data.body && res.status) {
+          try {
+            data = JSON.parse(data.body)
+          } catch (err) {
+            data = data.body
+          }
         }
+        debug('RESPONSE DATA', data)
+      } catch (err) {
+        return { err, res: {} }
       }
-      debug('RESPONSE DATA', data)
-    } catch (err) {
-      return { err, res: {} }
     }
 
-    if (!res.ok || res.statusCode >= 300 || res.statusCode < 200) {
+    if (!res.ok || res.status >= 300 || res.status < 200) {
       const err = new Error(res.statusText || res.message)
       return { err, res, data }
     }
